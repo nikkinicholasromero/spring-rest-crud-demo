@@ -12,5 +12,6 @@ public record EmployeeDto(
         BigDecimal height,
         BigDecimal weight,
         LocalDate hiredDate,
-        LocalTime startTime) {
+        LocalTime startTime,
+        boolean isRegular) {
 }

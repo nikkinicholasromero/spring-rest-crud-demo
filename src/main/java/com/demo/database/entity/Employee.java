@@ -36,6 +36,9 @@ public class Employee {
     @Column
     private LocalTime startTime;
 
+    @Column
+    private boolean isRegular;
+
     protected Employee() {
         // Note : Required by JPA. Do not use.
     }
@@ -79,6 +82,10 @@ public class Employee {
         return startTime;
     }
 
+    public boolean isRegular() {
+        return isRegular;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -106,6 +113,7 @@ public class Employee {
                 ", weight='" + weight + '\'' +
                 ", hiredDate='" + hiredDate + '\'' +
                 ", startTime='" + startTime + '\'' +
+                ", isRegular='" + isRegular + '\'' +
                 '}';
     }
 }

@@ -16,6 +16,7 @@ public class EmployeeTransformer {
                 employee.height(),
                 employee.weight(),
                 employee.hiredDate(),
-                employee.startTime());
+                employee.startTime(),
+                employee.isRegular());
     }
 }
