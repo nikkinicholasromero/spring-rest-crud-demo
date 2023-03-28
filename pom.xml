@@ -14,6 +14,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <snakeyaml.version>2.0</snakeyaml.version>
         <postgresl.version>42.6.0</postgresl.version>
+        <commons.collection4.version>4.4</commons.collection4.version>
+        <commons.lang.version>3.12.0</commons.lang.version>
     </properties>
 
     <parent>
@@ -39,6 +41,18 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgresl.version}</version>
+        </dependency>
+
+        <!-- utilities -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${commons.collection4.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang.version}</version>
         </dependency>
 
         <!-- tests -->
