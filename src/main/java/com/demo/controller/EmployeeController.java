@@ -9,9 +9,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/employees")
-public class EmployeesController {
+public class EmployeeController {
     @GetMapping
-    public List<EmployeeDto> getAllEmployees() {
+    public List<EmployeeDto> findAll() {
         return List.of();
     }
 }
