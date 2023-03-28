@@ -3,6 +3,7 @@ package com.demo.service;
 import com.demo.database.entity.Employee;
 import com.demo.database.entity.EmployeeRepository;
 import com.demo.dto.EmployeeDto;
+import com.demo.exception.EmployeeNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,9 @@ public class EmployeeService {
     }
 
     public EmployeeDto findById(String id) {
-        Employee employee = employeeRepository.findById(id);
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFound("Employee with id " + id + " not found. "));
+
         return new EmployeeDto(
                 employee.getId(),
                 employee.getFirstName(),
