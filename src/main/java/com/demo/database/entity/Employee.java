@@ -1,6 +1,7 @@
 package com.demo.database.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -38,6 +39,9 @@ public class Employee {
 
     @Column
     private boolean isRegular;
+
+    @Embedded
+    private Audit audit;
 
     protected Employee() {
         // Note : Required by JPA. Do not use.
@@ -114,6 +118,7 @@ public class Employee {
                 ", hiredDate='" + hiredDate + '\'' +
                 ", startTime='" + startTime + '\'' +
                 ", isRegular='" + isRegular + '\'' +
+                ", audit='" + audit + '\'' +
                 '}';
     }
 }
