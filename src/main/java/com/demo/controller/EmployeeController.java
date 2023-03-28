@@ -3,6 +3,7 @@ package com.demo.controller;
 import com.demo.dto.CreateEmployeeRequest;
 import com.demo.dto.EmployeeDto;
 import com.demo.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public void createEmployee(@RequestBody CreateEmployeeRequest request) {
+    public void createEmployee(@RequestBody @Valid CreateEmployeeRequest request) {
 
     }
 }
