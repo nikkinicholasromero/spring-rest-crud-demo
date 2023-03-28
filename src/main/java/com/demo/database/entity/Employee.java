@@ -107,6 +107,30 @@ public class Employee {
         return isRegular;
     }
 
+    public void updateName(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.audit.update("ADMIN");
+    }
+
+    public void updateNumberOfDependents(long numberOfDependents) {
+        this.numberOfDependents = numberOfDependents;
+        this.audit.update("ADMIN");
+    }
+
+    public void updateBodyInformation(BigDecimal height, BigDecimal weight) {
+        this.height = height;
+        this.weight = weight;
+        this.audit.update("ADMIN");
+    }
+
+    public void updateEmploymentInformation(LocalDate hiredDate, LocalTime startTime, boolean isRegular) {
+        this.hiredDate = hiredDate;
+        this.startTime = startTime;
+        this.isRegular = isRegular;
+        this.audit.update("ADMIN");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

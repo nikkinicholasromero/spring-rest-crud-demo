@@ -78,6 +78,11 @@ public class Audit {
                 .isEquals();
     }
 
+    public void update(String updatedBy) {
+        this.updatedAt = LocalDateTime.now();
+        this.updatedBy = updatedBy;
+    }
+
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)

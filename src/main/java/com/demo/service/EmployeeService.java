@@ -4,6 +4,7 @@ import com.demo.database.entity.Employee;
 import com.demo.database.repository.EmployeeRepository;
 import com.demo.dto.CreateEmployeeRequest;
 import com.demo.dto.EmployeeDto;
+import com.demo.dto.UpdateEmployeeRequest;
 import com.demo.exception.EmployeeNotFound;
 import com.demo.transformer.EmployeeTransformer;
 import org.apache.commons.lang3.StringUtils;
@@ -50,6 +51,21 @@ public class EmployeeService {
                 request.startTime(),
                 request.isRegular(),
                 "ADMIN");
+
+        employeeRepository.save(employee);
+    }
+
+    @Transactional
+    public void updateEmployee(String id, UpdateEmployeeRequest request) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFound(EMPLOYEE_NOT_FOUND.formatted(id)));
+
+        employee.updateName(
+                StringUtils.trimToEmpty(request.firstName()),
+                StringUtils.trimToEmpty(request.lastName()));
+        employee.updateNumberOfDependents(request.numberOfDependents());
+        employee.updateBodyInformation(request.height(), request.weight());
+        employee.updateEmploymentInformation(request.hiredDate(), request.startTime(), request.isRegular());
 
         employeeRepository.save(employee);
     }

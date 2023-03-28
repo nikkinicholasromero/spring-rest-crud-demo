@@ -2,6 +2,7 @@ package com.demo.controller;
 
 import com.demo.dto.CreateEmployeeRequest;
 import com.demo.dto.EmployeeDto;
+import com.demo.dto.UpdateEmployeeRequest;
 import com.demo.service.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,10 @@ public class EmployeeController {
     @PostMapping
     public void createEmployee(@RequestBody @Valid CreateEmployeeRequest request) {
         employeeService.createEmployee(request);
+    }
+
+    @PutMapping("/{id}")
+    public void updateEmployee(@PathVariable String id, @RequestBody @Valid UpdateEmployeeRequest request) {
+        employeeService.updateEmployee(id, request);
     }
 }
