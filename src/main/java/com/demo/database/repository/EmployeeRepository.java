@@ -1,5 +1,6 @@
-package com.demo.database.entity;
+package com.demo.database.repository;
 
+import com.demo.database.entity.Employee;
 import org.springframework.data.repository.Repository;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.demo.service;
 
 import com.demo.database.entity.Employee;
-import com.demo.database.entity.EmployeeRepository;
+import com.demo.database.repository.EmployeeRepository;
 import com.demo.dto.EmployeeDto;
 import com.demo.exception.EmployeeNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
