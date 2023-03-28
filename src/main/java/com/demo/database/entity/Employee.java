@@ -98,12 +98,16 @@ public class Employee {
 
         Employee employee = (Employee) o;
 
-        return new EqualsBuilder().append(id, employee.id).isEquals();
+        return new EqualsBuilder()
+                .append(id, employee.id)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(id).toHashCode();
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .toHashCode();
     }
 
     @Override

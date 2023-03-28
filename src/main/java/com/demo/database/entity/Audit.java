@@ -68,12 +68,26 @@ public class Audit {
 
         Audit audit = (Audit) o;
 
-        return new EqualsBuilder().append(createdAt, audit.createdAt).append(updatedAt, audit.updatedAt).append(deletedAt, audit.deletedAt).append(createdBy, audit.createdBy).append(updatedBy, audit.updatedBy).append(deletedBy, audit.deletedBy).isEquals();
+        return new EqualsBuilder()
+                .append(createdAt, audit.createdAt)
+                .append(updatedAt, audit.updatedAt)
+                .append(deletedAt, audit.deletedAt)
+                .append(createdBy, audit.createdBy)
+                .append(updatedBy, audit.updatedBy)
+                .append(deletedBy, audit.deletedBy)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(createdAt).append(updatedAt).append(deletedAt).append(createdBy).append(updatedBy).append(deletedBy).toHashCode();
+        return new HashCodeBuilder(17, 37)
+                .append(createdAt)
+                .append(updatedAt)
+                .append(deletedAt)
+                .append(createdBy)
+                .append(updatedBy)
+                .append(deletedBy)
+                .toHashCode();
     }
 
     @Override
