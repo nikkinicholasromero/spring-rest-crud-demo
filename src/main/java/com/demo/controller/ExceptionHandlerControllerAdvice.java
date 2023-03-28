@@ -40,6 +40,6 @@ public class ExceptionHandlerControllerAdvice {
     }
 
     private String getLocalizedMessage(String code) {
-        return messageSource.getMessage(code, new Object[]{}, Locale.getDefault());
+        return messageSource.getMessage(code, new Object[]{}, code, Locale.getDefault());
     }
 }
