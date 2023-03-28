@@ -7,23 +7,27 @@ import com.demo.dto.EmployeeDto;
 import com.demo.dto.UpdateEmployeeRequest;
 import com.demo.exception.EmployeeNotFound;
 import com.demo.transformer.EmployeeTransformer;
+import jakarta.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@Validated
 public class EmployeeService {
     private static final String EMPLOYEE_NOT_FOUND = "Employee with id %s not found. ";
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
+    private final EmployeeTransformer employeeTransformer;
 
-    @Autowired
-    private EmployeeTransformer employeeTransformer;
+    public EmployeeService(EmployeeRepository employeeRepository, EmployeeTransformer employeeTransformer) {
+        this.employeeRepository = employeeRepository;
+        this.employeeTransformer = employeeTransformer;
+    }
 
     public List<EmployeeDto> findAll() {
         return employeeRepository.findAll().stream()
@@ -39,7 +43,7 @@ public class EmployeeService {
     }
 
     @Transactional
-    public void createEmployee(CreateEmployeeRequest request) {
+    public void createEmployee(@Valid CreateEmployeeRequest request) {
         Employee employee = new Employee(
                 UUID.randomUUID().toString(),
                 StringUtils.trimToEmpty(request.firstName()),
@@ -56,7 +60,7 @@ public class EmployeeService {
     }
 
     @Transactional
-    public void updateEmployee(String id, UpdateEmployeeRequest request) {
+    public void updateEmployee(String id, @Valid UpdateEmployeeRequest request) {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFound(EMPLOYEE_NOT_FOUND.formatted(id)));
 

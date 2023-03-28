@@ -4,8 +4,6 @@ import com.demo.dto.CreateEmployeeRequest;
 import com.demo.dto.EmployeeDto;
 import com.demo.dto.UpdateEmployeeRequest;
 import com.demo.service.EmployeeService;
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,8 +11,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
-    @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
+
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @GetMapping
     public List<EmployeeDto> findAll() {
@@ -27,12 +28,12 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public void createEmployee(@RequestBody @Valid CreateEmployeeRequest request) {
+    public void createEmployee(@RequestBody CreateEmployeeRequest request) {
         employeeService.createEmployee(request);
     }
 
     @PutMapping("/{id}")
-    public void updateEmployee(@PathVariable String id, @RequestBody @Valid UpdateEmployeeRequest request) {
+    public void updateEmployee(@PathVariable String id, @RequestBody UpdateEmployeeRequest request) {
         employeeService.updateEmployee(id, request);
     }
 
