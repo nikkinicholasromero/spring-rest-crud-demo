@@ -9,6 +9,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -47,11 +48,27 @@ public class Employee {
         // Note : Required by JPA. Do not use.
     }
 
-    public Employee(String firstName, String lastName, LocalDate hiredDate, LocalTime startTime) {
+    public Employee(
+            String id,
+            String firstName,
+            String lastName,
+            long numberOfDependents,
+            BigDecimal height,
+            BigDecimal weight,
+            LocalDate hiredDate,
+            LocalTime startTime,
+            boolean isRegular,
+            String createdBy) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.numberOfDependents = numberOfDependents;
+        this.height = height;
+        this.weight = weight;
         this.hiredDate = hiredDate;
         this.startTime = startTime;
+        this.isRegular = isRegular;
+        this.audit = new Audit(LocalDateTime.now(), createdBy);
     }
 
     public String id() {

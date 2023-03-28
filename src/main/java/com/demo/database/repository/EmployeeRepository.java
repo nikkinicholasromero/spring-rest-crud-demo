@@ -10,4 +10,6 @@ public interface EmployeeRepository extends Repository<Employee, String> {
     List<Employee> findAll();
 
     Optional<Employee> findById(String id);
+
+    void save(Employee employee);
 }

@@ -27,6 +27,6 @@ public class EmployeeController {
 
     @PostMapping
     public void createEmployee(@RequestBody @Valid CreateEmployeeRequest request) {
-
+        employeeService.createEmployee(request);
     }
 }

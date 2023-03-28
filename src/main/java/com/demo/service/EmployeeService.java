@@ -2,13 +2,17 @@ package com.demo.service;
 
 import com.demo.database.entity.Employee;
 import com.demo.database.repository.EmployeeRepository;
+import com.demo.dto.CreateEmployeeRequest;
 import com.demo.dto.EmployeeDto;
 import com.demo.exception.EmployeeNotFound;
 import com.demo.transformer.EmployeeTransformer;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class EmployeeService {
@@ -31,5 +35,22 @@ public class EmployeeService {
                 .orElseThrow(() -> new EmployeeNotFound(EMPLOYEE_NOT_FOUND.formatted(id)));
 
         return employeeTransformer.transform(employee);
+    }
+
+    @Transactional
+    public void createEmployee(CreateEmployeeRequest request) {
+        Employee employee = new Employee(
+                UUID.randomUUID().toString(),
+                StringUtils.trimToEmpty(request.firstName()),
+                StringUtils.trimToEmpty(request.lastName()),
+                request.numberOfDependents(),
+                request.height(),
+                request.weight(),
+                request.hiredDate(),
+                request.startTime(),
+                request.isRegular(),
+                "ADMIN");
+
+        employeeRepository.save(employee);
     }
 }
