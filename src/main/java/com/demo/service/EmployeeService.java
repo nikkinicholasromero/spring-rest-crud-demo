@@ -19,7 +19,8 @@ public class EmployeeService {
                 .map(employee -> new EmployeeDto(
                         employee.getId(),
                         employee.getFirstName(),
-                        employee.getLastName()))
+                        employee.getLastName(),
+                        employee.getNumberOfDependents()))
                 .toList();
     }
 
@@ -30,6 +31,7 @@ public class EmployeeService {
         return new EmployeeDto(
                 employee.getId(),
                 employee.getFirstName(),
-                employee.getLastName());
+                employee.getLastName(),
+                employee.getNumberOfDependents());
     }
 }

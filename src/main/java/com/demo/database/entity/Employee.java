@@ -17,6 +17,9 @@ public class Employee {
     @Column
     private String lastName;
 
+    @Column
+    private long numberOfDependents;
+
     protected Employee() {
         // Note : Required by JPA. Do not use.
     }
@@ -36,6 +39,10 @@ public class Employee {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public long getNumberOfDependents() {
+        return numberOfDependents;
     }
 
     @Override
@@ -60,6 +67,7 @@ public class Employee {
                 "id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", numberOfDependents='" + numberOfDependents + '\'' +
                 '}';
     }
 }
