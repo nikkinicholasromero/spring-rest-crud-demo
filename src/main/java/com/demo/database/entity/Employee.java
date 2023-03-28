@@ -7,6 +7,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 public class Employee {
@@ -28,13 +30,21 @@ public class Employee {
     @Column(precision = 1000, scale = 2)
     private BigDecimal weight;
 
+    @Column
+    private LocalDate hiredDate;
+
+    @Column
+    private LocalTime startTime;
+
     protected Employee() {
         // Note : Required by JPA. Do not use.
     }
 
-    public Employee(String firstName, String lastName) {
+    public Employee(String firstName, String lastName, LocalDate hiredDate, LocalTime startTime) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.hiredDate = hiredDate;
+        this.startTime = startTime;
     }
 
     public String id() {
@@ -59,6 +69,14 @@ public class Employee {
 
     public BigDecimal weight() {
         return weight;
+    }
+
+    public LocalDate hiredDate() {
+        return hiredDate;
+    }
+
+    public LocalTime startTime() {
+        return startTime;
     }
 
     @Override
@@ -86,6 +104,8 @@ public class Employee {
                 ", numberOfDependents='" + numberOfDependents + '\'' +
                 ", height='" + height + '\'' +
                 ", weight='" + weight + '\'' +
+                ", hiredDate='" + hiredDate + '\'' +
+                ", startTime='" + startTime + '\'' +
                 '}';
     }
 }

@@ -14,6 +14,8 @@ public class EmployeeTransformer {
                 StringUtils.trimToNull(employee.lastName()),
                 employee.numberOfDependents(),
                 employee.height(),
-                employee.weight());
+                employee.weight(),
+                employee.hiredDate(),
+                employee.startTime());
     }
 }
