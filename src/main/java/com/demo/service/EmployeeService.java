@@ -69,4 +69,14 @@ public class EmployeeService {
 
         employeeRepository.save(employee);
     }
+
+    @Transactional
+    public void deleteEmployee(String id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFound(EMPLOYEE_NOT_FOUND.formatted(id)));
+
+        employee.delete("ADMIN");
+
+        employeeRepository.save(employee);
+    }
 }

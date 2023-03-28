@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.hibernate.annotations.Where;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
+@Where(clause = "deleted_at is null")
 public class Employee {
     @Id
     private String id;
@@ -129,6 +131,10 @@ public class Employee {
         this.startTime = startTime;
         this.isRegular = isRegular;
         this.audit.update("ADMIN");
+    }
+
+    public void delete(String admin) {
+        this.audit.delete("ADMIN");
     }
 
     @Override

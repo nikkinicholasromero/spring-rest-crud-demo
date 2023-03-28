@@ -83,6 +83,11 @@ public class Audit {
         this.updatedBy = updatedBy;
     }
 
+    public void delete(String deletedBy) {
+        this.deletedAt = LocalDateTime.now();
+        this.deletedBy = deletedBy;
+    }
+
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
