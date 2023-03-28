@@ -29,19 +29,19 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public String getId() {
+    public String id() {
         return id;
     }
 
-    public String getFirstName() {
+    public String firstName() {
         return firstName;
     }
 
-    public String getLastName() {
+    public String lastName() {
         return lastName;
     }
 
-    public long getNumberOfDependents() {
+    public long numberOfDependents() {
         return numberOfDependents;
     }
 

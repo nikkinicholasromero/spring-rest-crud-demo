@@ -17,10 +17,10 @@ public class EmployeeService {
     public List<EmployeeDto> findAll() {
         return employeeRepository.findAll().stream()
                 .map(employee -> new EmployeeDto(
-                        employee.getId(),
-                        employee.getFirstName(),
-                        employee.getLastName(),
-                        employee.getNumberOfDependents()))
+                        employee.id(),
+                        employee.firstName(),
+                        employee.lastName(),
+                        employee.numberOfDependents()))
                 .toList();
     }
 
@@ -29,9 +29,9 @@ public class EmployeeService {
                 .orElseThrow(() -> new EmployeeNotFound("Employee with id " + id + " not found. "));
 
         return new EmployeeDto(
-                employee.getId(),
-                employee.getFirstName(),
-                employee.getLastName(),
-                employee.getNumberOfDependents());
+                employee.id(),
+                employee.firstName(),
+                employee.lastName(),
+                employee.numberOfDependents());
     }
 }
