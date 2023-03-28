@@ -18,7 +18,6 @@
 - Architecture
     - Rename EmployeeTransformer to EmployeeToEmployeeDtoTransformer
     - Create CreateEmployeeRequestToEmployee Transformer
-    - Move trim logic in Entity-layer
     - Consider moving validation logic in Entity-layer
 
 - JPA

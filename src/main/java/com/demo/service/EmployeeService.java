@@ -8,7 +8,6 @@ import com.demo.dto.UpdateEmployeeRequest;
 import com.demo.exception.EmployeeNotFound;
 import com.demo.transformer.EmployeeTransformer;
 import jakarta.validation.Valid;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -20,6 +19,7 @@ import java.util.UUID;
 @Validated
 public class EmployeeService {
     private static final String EMPLOYEE_NOT_FOUND = "Employee with id %s not found. ";
+    private static final String ADMIN = "ADMIN";
 
     private final EmployeeRepository employeeRepository;
     private final EmployeeTransformer employeeTransformer;
@@ -46,15 +46,15 @@ public class EmployeeService {
     public void createEmployee(@Valid CreateEmployeeRequest request) {
         Employee employee = new Employee(
                 UUID.randomUUID().toString(),
-                StringUtils.trimToEmpty(request.firstName()),
-                StringUtils.trimToEmpty(request.lastName()),
+                request.firstName(),
+                request.lastName(),
                 request.numberOfDependents(),
                 request.height(),
                 request.weight(),
                 request.hiredDate(),
                 request.startTime(),
                 request.isRegular(),
-                "ADMIN");
+                ADMIN);
 
         employeeRepository.save(employee);
     }
@@ -64,12 +64,10 @@ public class EmployeeService {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFound(EMPLOYEE_NOT_FOUND.formatted(id)));
 
-        employee.updateName(
-                StringUtils.trimToEmpty(request.firstName()),
-                StringUtils.trimToEmpty(request.lastName()));
-        employee.updateNumberOfDependents(request.numberOfDependents());
-        employee.updateBodyInformation(request.height(), request.weight());
-        employee.updateEmploymentInformation(request.hiredDate(), request.startTime(), request.isRegular());
+        employee.updateName(request.firstName(), request.lastName(), ADMIN);
+        employee.updateNumberOfDependents(request.numberOfDependents(), ADMIN);
+        employee.updateBodyInformation(request.height(), request.weight(), ADMIN);
+        employee.updateEmploymentInformation(request.hiredDate(), request.startTime(), request.isRegular(), ADMIN);
 
         employeeRepository.save(employee);
     }
@@ -79,7 +77,7 @@ public class EmployeeService {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFound(EMPLOYEE_NOT_FOUND.formatted(id)));
 
-        employee.delete("ADMIN");
+        employee.delete(ADMIN);
 
         employeeRepository.save(employee);
     }

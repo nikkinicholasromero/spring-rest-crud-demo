@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.annotations.Where;
@@ -62,8 +63,8 @@ public class Employee {
             boolean isRegular,
             String createdBy) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = StringUtils.trimToEmpty(firstName);
+        this.lastName = StringUtils.trimToEmpty(lastName);
         this.numberOfDependents = numberOfDependents;
         this.height = height;
         this.weight = weight;
@@ -109,32 +110,32 @@ public class Employee {
         return isRegular;
     }
 
-    public void updateName(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.audit.update("ADMIN");
+    public void updateName(String firstName, String lastName, String deletedBy) {
+        this.firstName = StringUtils.trimToEmpty(firstName);
+        this.lastName = StringUtils.trimToEmpty(lastName);
+        this.audit.update(deletedBy);
     }
 
-    public void updateNumberOfDependents(long numberOfDependents) {
+    public void updateNumberOfDependents(long numberOfDependents, String deletedBy) {
         this.numberOfDependents = numberOfDependents;
-        this.audit.update("ADMIN");
+        this.audit.update(deletedBy);
     }
 
-    public void updateBodyInformation(BigDecimal height, BigDecimal weight) {
+    public void updateBodyInformation(BigDecimal height, BigDecimal weight, String deletedBy) {
         this.height = height;
         this.weight = weight;
-        this.audit.update("ADMIN");
+        this.audit.update(deletedBy);
     }
 
-    public void updateEmploymentInformation(LocalDate hiredDate, LocalTime startTime, boolean isRegular) {
+    public void updateEmploymentInformation(LocalDate hiredDate, LocalTime startTime, boolean isRegular, String deletedBy) {
         this.hiredDate = hiredDate;
         this.startTime = startTime;
         this.isRegular = isRegular;
-        this.audit.update("ADMIN");
+        this.audit.update(deletedBy);
     }
 
-    public void delete(String admin) {
-        this.audit.delete("ADMIN");
+    public void delete(String deletedBy) {
+        this.audit.delete(deletedBy);
     }
 
     @Override

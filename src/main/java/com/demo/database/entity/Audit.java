@@ -60,6 +60,16 @@ public class Audit {
         return deletedBy;
     }
 
+    public void update(String updatedBy) {
+        this.updatedAt = LocalDateTime.now();
+        this.updatedBy = updatedBy;
+    }
+
+    public void delete(String deletedBy) {
+        this.deletedAt = LocalDateTime.now();
+        this.deletedBy = deletedBy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -76,16 +86,6 @@ public class Audit {
                 .append(updatedBy, audit.updatedBy)
                 .append(deletedBy, audit.deletedBy)
                 .isEquals();
-    }
-
-    public void update(String updatedBy) {
-        this.updatedAt = LocalDateTime.now();
-        this.updatedBy = updatedBy;
-    }
-
-    public void delete(String deletedBy) {
-        this.deletedAt = LocalDateTime.now();
-        this.deletedBy = deletedBy;
     }
 
     @Override
