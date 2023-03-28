@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EmployeeTransformer {
+public class EmployeeToEmployeeDtoTransformer {
     public EmployeeDto transform(Employee employee) {
         return new EmployeeDto(
                 StringUtils.trimToNull(employee.id()),

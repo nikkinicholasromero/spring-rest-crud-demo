@@ -6,7 +6,7 @@ import com.demo.dto.CreateEmployeeRequest;
 import com.demo.dto.EmployeeDto;
 import com.demo.dto.UpdateEmployeeRequest;
 import com.demo.exception.EmployeeNotFound;
-import com.demo.transformer.EmployeeTransformer;
+import com.demo.transformer.EmployeeToEmployeeDtoTransformer;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,16 +25,16 @@ public class EmployeeService {
     private static final String ADMIN = "ADMIN";
 
     private final EmployeeRepository employeeRepository;
-    private final EmployeeTransformer employeeTransformer;
+    private final EmployeeToEmployeeDtoTransformer employeeToEmployeeDtoTransformer;
 
-    public EmployeeService(EmployeeRepository employeeRepository, EmployeeTransformer employeeTransformer) {
+    public EmployeeService(EmployeeRepository employeeRepository, EmployeeToEmployeeDtoTransformer employeeToEmployeeDtoTransformer) {
         this.employeeRepository = employeeRepository;
-        this.employeeTransformer = employeeTransformer;
+        this.employeeToEmployeeDtoTransformer = employeeToEmployeeDtoTransformer;
     }
 
     public List<EmployeeDto> findAll() {
         return employeeRepository.findAll().stream()
-                .map(employeeTransformer::transform)
+                .map(employeeToEmployeeDtoTransformer::transform)
                 .toList();
     }
 
@@ -42,7 +42,7 @@ public class EmployeeService {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFound(EMPLOYEE_NOT_FOUND.formatted(id)));
 
-        return employeeTransformer.transform(employee);
+        return employeeToEmployeeDtoTransformer.transform(employee);
     }
 
     @Transactional

@@ -13,7 +13,6 @@
     - HTTP Filters
 
 - Architecture
-    - Rename EmployeeTransformer to EmployeeToEmployeeDtoTransformer
     - Create CreateEmployeeRequestToEmployee Transformer
     - Consider moving validation logic in Entity-layer
 
