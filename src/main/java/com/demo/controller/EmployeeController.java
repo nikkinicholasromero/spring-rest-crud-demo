@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import com.demo.dto.CreateEmployeeRequest;
 import com.demo.dto.EmployeeDto;
 import com.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,10 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public EmployeeDto findById(@PathVariable String id) {
         return employeeService.findById(id);
+    }
+
+    @PostMapping
+    public void createEmployee(@RequestBody CreateEmployeeRequest request) {
+
     }
 }
