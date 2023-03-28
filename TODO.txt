@@ -1,6 +1,3 @@
-- Logging
-    - Add logging in Service-layers
-
 - Testing
     - Add in-memory database
     - Add DB migration tool
