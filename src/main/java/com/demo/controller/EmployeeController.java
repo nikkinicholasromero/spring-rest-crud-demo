@@ -3,9 +3,7 @@ package com.demo.controller;
 import com.demo.dto.EmployeeDto;
 import com.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,5 +16,10 @@ public class EmployeeController {
     @GetMapping
     public List<EmployeeDto> findAll() {
         return employeeService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public EmployeeDto findById(@PathVariable String id) {
+        return employeeService.findById(id);
     }
 }

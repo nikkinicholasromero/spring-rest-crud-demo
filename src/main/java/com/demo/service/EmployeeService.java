@@ -1,5 +1,6 @@
 package com.demo.service;
 
+import com.demo.database.entity.Employee;
 import com.demo.database.entity.EmployeeRepository;
 import com.demo.dto.EmployeeDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,13 @@ public class EmployeeService {
                         employee.getFirstName(),
                         employee.getLastName()))
                 .toList();
+    }
+
+    public EmployeeDto findById(String id) {
+        Employee employee = employeeRepository.findById(id);
+        return new EmployeeDto(
+                employee.getId(),
+                employee.getFirstName(),
+                employee.getLastName());
     }
 }
