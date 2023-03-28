@@ -12,6 +12,9 @@ import java.util.List;
 
 @Service
 public class EmployeeService {
+    private static final String EMPLOYEE_NOT_FOUND = "Employee with id %s not found. ";
+
+
     @Autowired
     private EmployeeRepository employeeRepository;
 
@@ -26,7 +29,7 @@ public class EmployeeService {
 
     public EmployeeDto findById(String id) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFound("Employee with id " + id + " not found. "));
+                .orElseThrow(() -> new EmployeeNotFound(EMPLOYEE_NOT_FOUND.formatted(id)));
 
         return employeeTransformer.transform(employee);
     }
