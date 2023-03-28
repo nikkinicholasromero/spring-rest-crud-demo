@@ -1,3 +1,5 @@
 - Add unit tests
 - Add logging
 - Add in-memory database
+- Add authentications and authorizations
+- Add DB migration tool
