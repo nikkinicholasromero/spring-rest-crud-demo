@@ -20,7 +20,9 @@ public class EmployeeService {
                         employee.id(),
                         employee.firstName(),
                         employee.lastName(),
-                        employee.numberOfDependents()))
+                        employee.numberOfDependents(),
+                        employee.height(),
+                        employee.weight()))
                 .toList();
     }
 
@@ -32,6 +34,8 @@ public class EmployeeService {
                 employee.id(),
                 employee.firstName(),
                 employee.lastName(),
-                employee.numberOfDependents());
+                employee.numberOfDependents(),
+                employee.height(),
+                employee.weight());
     }
 }

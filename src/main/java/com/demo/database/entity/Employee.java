@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.math.BigDecimal;
+
 @Entity
 public class Employee {
     @Id
@@ -19,6 +21,12 @@ public class Employee {
 
     @Column
     private long numberOfDependents;
+
+    @Column(precision = 1000, scale = 2)
+    private BigDecimal height;
+
+    @Column(precision = 1000, scale = 2)
+    private BigDecimal weight;
 
     protected Employee() {
         // Note : Required by JPA. Do not use.
@@ -45,6 +53,14 @@ public class Employee {
         return numberOfDependents;
     }
 
+    public BigDecimal height() {
+        return height;
+    }
+
+    public BigDecimal weight() {
+        return weight;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,6 +84,8 @@ public class Employee {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", numberOfDependents='" + numberOfDependents + '\'' +
+                ", height='" + height + '\'' +
+                ", weight='" + weight + '\'' +
                 '}';
     }
 }
